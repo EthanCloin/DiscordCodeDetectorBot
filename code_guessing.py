@@ -1,6 +1,7 @@
 from guesslang import Guess
 import streamlit as st
 
+
 def guess_test(code_string: str):
     guess = Guess()
     return guess.language_name(code_string)
@@ -15,6 +16,6 @@ if __name__ == "__main__":
     )
     print(test_result)
 
-code = st.text_input()
+code = st.text_input("Code")
 if st.button("TRY"):
     guess_test(code)
