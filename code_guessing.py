@@ -22,10 +22,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     guess = Guess()
-    if guess.language_name(code_string) != "Batchfile" {
+    if guess.language_name(code_string) != "Batchfile":
         # send popup message to user suggesting a block comment
         await message.channel.send("Stop it get some help, format your code lol")
-    }
+    
     
     
 
