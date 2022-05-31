@@ -1,3 +1,6 @@
+"""original design as we were learning. the functions here are now present
+in code_detector_bot.py as class methods."""
+
 from guesslang import Guess
 
 import discord

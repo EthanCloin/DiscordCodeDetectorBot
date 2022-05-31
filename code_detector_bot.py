@@ -1,3 +1,8 @@
+"""extension of the discord.Client class with custom behavior to detect what programming
+language a user has included in their message. can be configured in config.py to react
+to specified emoji, or to all messages. potential features include dm-ing user, bot commands
+to update the config information, or NLP to determine which sections of a message is code"""
+
 import discord
 from guesslang import Guess
 from config import Config
@@ -5,6 +10,9 @@ import logging
 
 
 _log = logging.getLogger(__name__)
+# disabling imported logs
+logging.getLogger("guesslang").disabled = True
+logging.getLogger("discord").disabled = True
 
 
 class CodeDetector(discord.Client):
@@ -61,7 +69,8 @@ class CodeDetector(discord.Client):
                 # send popup message to user suggesting a block comment
                 await message.channel.send(
                     self.config.default_msg.replace(
-                        self.config.default_msg_programming_language, programming_language
+                        self.config.default_msg_programming_language,
+                        programming_language,
                     )
                 )
         _log.debug("[rxn] msg ignored due to config ignored languages")
