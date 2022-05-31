@@ -9,13 +9,9 @@ def guess_test(code_string: str):
 
 if __name__ == "__main__":
     # client.run(TOKEN)
-    test_result = guess_test(
-        """
-    print("Hello World!") 
-    """
-    )
-    print(test_result)
+    pass
 
 code = st.text_input("Code")
 if st.button("TRY"):
-    guess_test(code)
+    language = guess_test(code)
+    st.success(language)
