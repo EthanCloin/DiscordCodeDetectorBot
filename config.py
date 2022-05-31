@@ -20,7 +20,7 @@ class Config:
     default_msg: str = (
         "Looks like you are trying to send a block of {{LANGUAGE}} code here!\n"
         "Try using Discord's built-in code-block element instead.\n"
-        "eg: \`\`\`python\nprint('Hello World!')\n```"
+        "eg: \`\`\`python\nprint('Hello World!')\n\`\`\`"
         "\n```python\nprint('Hello World!')```"
     )
     default_msg_programming_language: str = "{{LANGUAGE}}"
