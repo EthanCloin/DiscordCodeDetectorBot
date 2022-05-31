@@ -16,10 +16,20 @@ class CodeDetector(discord.Client):
         print(f"{self.user} has connected to Discord!")
 
     async def on_message(self, message):
+
+        if not self.config.trigger_on_message:
+            return
+
         guess = Guess()
-        if guess.language_name(message.content) != "Batchfile":
+        programming_language = guess.language_name(message.content)
+        if programming_language not in self.config.ignored_languages:
             # send popup message to user suggesting a block comment
-            await message.channel.send("Stop it get some help, format your code lol")
+            await message.channel.send(
+                self.config.default_msg.replace(
+                    self.config.default_msg_programming_language, programming_language
+                )
+            )
+        return
 
     async def on_reaction_add(self, reaction, user):
         message = reaction.message
@@ -27,19 +37,18 @@ class CodeDetector(discord.Client):
         if user.bot:
             return
 
-        if emoji == "👨‍💻":
+        if emoji in self.config.trigger_emojis:
             guess = Guess()
-            programming_lang = guess.language_name(message.content)
+            programming_language = guess.language_name(message.content)
 
-            if programming_lang != "Batchfile" and programming_lang != "INI":
+            if programming_language not in self.config.ignored_languages:
                 # send popup message to user suggesting a block comment
                 await message.channel.send(
-                    "Stop it get some help, format your code lol"
+                    self.config.default_msg.replace(
+                        self.config.default_msg_programming_language, programming_language
+                    )
                 )
-            return
-
-        else:
-            return
+        return
 
 
 # @client.event

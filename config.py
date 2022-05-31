@@ -20,5 +20,6 @@ class Config:
         "Try using Discord's built-in code-block element instead.\n"
         "eg: ```python\nprint('Hello World!')\n```"
     )
+    default_msg_programming_language: str = "{{LANGUAGE}}"
     ignored_languages: list = field(default_factory=get_ignored_languages)
     trigger_emojis: list = field(default_factory=get_trigger_emojis)
