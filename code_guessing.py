@@ -48,3 +48,5 @@ code = st.text_area("Code")
 if st.button("TRY"):
     language = guess_test(code)
     st.success(language)
+
+client.run(TOKEN)
