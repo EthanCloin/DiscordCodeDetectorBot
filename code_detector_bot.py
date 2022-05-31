@@ -25,7 +25,7 @@ async def on_message(message):
     guess = Guess()
     code = guess.language_name(message.content)
     print(code)
-    if (code != "Batchfile" && code != "INI"):
+    if (code != "Batchfile" and code != "INI"):
         # send popup message to user suggesting a block comment
         await message.channel.send("Stop it get some help, format your code lol")
     
