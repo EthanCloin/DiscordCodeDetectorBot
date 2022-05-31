@@ -1,6 +1,5 @@
 from guesslang import Guess
 import streamlit as st
-
 import discord
 import os
 from dotenv import load_dotenv
@@ -8,7 +7,7 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = st.secrets["DISCORD_TOKEN"]
 print(TOKEN)
 client = discord.Client()
 
