@@ -11,7 +11,7 @@ if __name__ == "__main__":
     # client.run(TOKEN)
     pass
 
-code = st.text_input("Code")
+code = st.text_area("Code")
 if st.button("TRY"):
     language = guess_test(code)
     st.success(language)
