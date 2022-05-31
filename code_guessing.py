@@ -24,7 +24,23 @@ async def on_message(message):
         # send popup message to user suggesting a block comment
         await message.channel.send("Stop it get some help, format your code lol")
 
+@client.event
+async def on_reaction_add(reaction, user):
+    embed = reaction.embeds[0]
+    emoji = reaction.emoji
 
+    if user.bot:
+        return
+
+    if emoji == "emoji 1":
+        # fixed_channel = client.get_channel(channel_id)
+        # await fixed_channel.send(embed=embed)
+    elif emoji == "emoji 2":
+        #do stuff
+    elif emoji == "emoji 3":
+        #do stuff
+    else:
+        return
 # automatically delete and reformat user message
 if __name__ == "__main__":
     pass
