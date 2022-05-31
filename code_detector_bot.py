@@ -1,6 +1,10 @@
 import discord
 from guesslang import Guess
 from config import Config
+import logging
+
+
+_log = logging.getLogger(__name__)
 
 
 class CodeDetector(discord.Client):
@@ -18,10 +22,13 @@ class CodeDetector(discord.Client):
     async def on_message(self, message):
 
         if not self.config.trigger_on_message:
+            _log.debug("msg ignored due to config")
             return
 
         guess = Guess()
         programming_language = guess.language_name(message.content)
+        _log.debug(f"[msg] msg detected in language {programming_language}")
+
         if programming_language not in self.config.ignored_languages:
             # send popup message to user suggesting a block comment
             await message.channel.send(
@@ -29,17 +36,26 @@ class CodeDetector(discord.Client):
                     self.config.default_msg_programming_language, programming_language
                 )
             )
+        _log.debug("[msg] msg ignored due to config ignored languages")
         return
 
     async def on_reaction_add(self, reaction, user):
+
+        if not self.config.trigger_on_reaction:
+            _log.debug("rxn ignored due to config")
+            return
+        if user.bot:
+            _log.debug("rxn ignored due to bot src")
+            return
+
         message = reaction.message
         emoji = reaction.emoji
-        if user.bot:
-            return
+        _log.debug(f"emoji detected: {emoji}")
 
         if emoji in self.config.trigger_emojis:
             guess = Guess()
             programming_language = guess.language_name(message.content)
+            _log.debug(f"[rxn] msg detected in language {programming_language}")
 
             if programming_language not in self.config.ignored_languages:
                 # send popup message to user suggesting a block comment
@@ -48,6 +64,7 @@ class CodeDetector(discord.Client):
                         self.config.default_msg_programming_language, programming_language
                     )
                 )
+        _log.debug("[rxn] msg ignored due to config ignored languages")
         return
 
 

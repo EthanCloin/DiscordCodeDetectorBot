@@ -6,10 +6,10 @@ def get_ignored_languages() -> list:
 
 
 def get_trigger_emojis() -> list:
-    return ["👨‍💻"]
+    return ["👨‍💻", ":m:", "🥳"]
 
 
-@dataclass(init=False)
+@dataclass
 class Config:
     dm_user: bool = True
     msg_channel: bool = False
