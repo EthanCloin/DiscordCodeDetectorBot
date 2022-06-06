@@ -1,6 +1,11 @@
-"""dataclass with attributes to dictate behavior of code_detector_bot"""
+"""dataclass with attributes to dictate behavior of code_detector_bot
+and logs"""
 
+import os
 from dataclasses import dataclass, field
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def get_ignored_languages() -> list:
@@ -26,3 +31,23 @@ class Config:
     default_msg_programming_language: str = "{{LANGUAGE}}"
     ignored_languages: list = field(default_factory=get_ignored_languages)
     trigger_emojis: list = field(default_factory=get_trigger_emojis)
+
+
+# -- Logging -- #
+ERROR_LOG_FILENAME = os.getenv("ERROR_LOG_FILENAME")
+DEBUG_LOG_FILENAME = os.getenv("DEBUG_LOG_FILENAME")
+
+LOGGING_CONFIG = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s:%(name)s:%(process)d:%(lineno)d "
+            "%(levelname)s %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+        "simple": {
+            "format": "%(message)s",
+        },
+    },
+}

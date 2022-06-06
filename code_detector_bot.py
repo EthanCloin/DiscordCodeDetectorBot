@@ -77,37 +77,5 @@ class CodeDetector(discord.Client):
         return
 
 
-# @client.event
-# async def on_ready():
-#     print(f"{client.user} has connected to Discord!")
-#
-#
-# # react to event for when user sends message
-#
-#
-# @client.event
-# async def on_message(message):
-#     guess = Guess()
-#     code = guess.language_name(message.content)
-#     print(code)
-#     if code != "Batchfile" and code != "INI":
-#         # send popup message to user suggesting a block comment
-#         await message.channel.send("Stop it get some help, format your code lol")
-#
-#
-# # send popup message to user suggesting a block comment
-# @bot.command(name="my_cmd")
-# async def command_testing(ctx):
-#     response = "you have commanded, i have complied"
-#     await ctx.send(response)
-#
-#
-# def suggest_language_formatted():
-#     pass
-#
-#
-# # automatically delete and reformat user message
-
-
 if __name__ == "__main__":
     pass
